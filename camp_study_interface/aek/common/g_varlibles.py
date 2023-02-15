@@ -8,4 +8,6 @@ class g_var(object):
     def show_dict(self):
         return self._global_dict
 
+gl_val = g_var()
+
 

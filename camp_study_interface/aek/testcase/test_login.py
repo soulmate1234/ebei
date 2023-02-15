@@ -5,11 +5,13 @@ import allure
 import pytest
 import requests
 from camp_study_interface.aek.common.config_data import TEST_IP, userLoginName, userLoginPassword
+import logging
 
-s = requests.session();
 
+s = requests.session()
 
-class TestLogin():
+class TestLogin:
+
     @allure.story("登录")
     def test_login(self):
         ip = TEST_IP;
@@ -19,16 +21,25 @@ class TestLogin():
             'userLoginPassword': userLoginPassword
         }
         response = s.post(url=url, json=param)
-        assert 1==1
-
-    def test_one(self):
-        print("hello")
-        q=1
-        w=2
-        assert  q==w
-    if __name__ == '__main__':
-
-        pytest.main(['-s', '-q', 'test_login.py', '--clean-alluredir', '--alluredir=allure-results'])
-        os.system(r"allure generate -c -o allure-report")
+        print("---------------------++++++++++++++"+response.text)
+        # logging.info("-------------------"+response.text)
+        print(response.cookies.values())
+        token = response.cookies.values()[0]
+        print(token)
+        return token
 
 
+#     def test_one(self):
+#         print("hello")
+#         q=1
+#         w=2
+#         assert  q==w
+#     def test_2ne(self):
+#         print("hello")
+#         q=1
+#         w=2
+#         assert  w==w
+#
+# if __name__ == '__main__':
+#     TestLogin().test_login()
+#     pytest.main()
