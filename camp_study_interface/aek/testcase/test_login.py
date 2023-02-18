@@ -21,11 +21,11 @@ class TestLogin:
             'userLoginPassword': userLoginPassword
         }
         response = s.post(url=url, json=param)
-        print("---------------------++++++++++++++"+response.text)
+        # print("---------------------++++++++++++++"+response.text)
         # logging.info("-------------------"+response.text)
-        print(response.cookies.values())
+        # print(response.cookies.values())
         token = response.cookies.values()[0]
-        print(token)
+        # print(token)
         return token
 
 
